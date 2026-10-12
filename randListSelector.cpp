@@ -26,7 +26,7 @@ const std::string MSG_HELP {
 	" - n: Input a new list\n"
 	" - end: Exit the program\n\n"
 };
-const std::string MSG_NEW_FILE {"Please enter the pathname of a .txt file:\n"};
+const std::string MSG_NEW_FILE {"Please enter the pathname of a .txt file: "};
 const std::string MSG_ERROR_INVALID {
 	"This query is not a valid file pathname or recognised command. Enter '?' "
 	"for further help.\n"
@@ -74,8 +74,10 @@ int main() {
 				std::cout << MSG_ERROR_NO_FILE;
 			}
 		} else if (input.compare(CMD_NEW) == 0) {
-			// TODO - clear current list
-			std::cout << MSG_NEW_FILE << MSG_PROMPT;
+			std::cout << MSG_NEW_FILE;
+			std::cin >> input;
+			list.clear();
+			listIsInput = getList(input, list);
 		} else if (input.compare(CMD_EXIT) == 0) {
 			std::cout << MSG_EXIT;
 			exit = true;
