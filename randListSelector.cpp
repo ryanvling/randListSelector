@@ -3,7 +3,7 @@
 // Command-line tool that, when queried, pseudo-randomly selects & outputs an
 // item from a list defined in an input .txt file.
 //
-// Last Updated: 12 Oct 2026
+// Last Updated: 13 Oct 2026
 
 #include <cstdlib>
 #include <ctime>
@@ -45,6 +45,7 @@ const std::string CMD_EXIT {"end"};
 ////////////////////////////////////////////////////////////////////////////////
 
 bool getList(std::string input, std::vector<std::string> list);
+void printList(std::vector<std::string> list);
 void randomSelect(size_t maxIdx, std::vector<std::string> list);
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -89,7 +90,7 @@ int main() {
 	return 0;
 }
 
-// Get the indexed list from the list file
+// Read from the list file into an indexed list
 bool getList(std::string input, std::vector<std::string> list) {
 	std::ifstream listFile {input};
 
@@ -103,7 +104,19 @@ bool getList(std::string input, std::vector<std::string> list) {
 		list.emplace_back(line);
 	}
 
+	printList(list);
+
 	return true;
+}
+
+// If the given list is not empty, print each of its items to a new line. 
+void printList(std::vector<std::string> list) {
+	if (!list.empty()) {
+		std::cout << "Inputted list:\n";
+		for (int i {0}; i < list.size(); ++i) {
+			std::cout << list.at(i) << '\n';
+		}
+	}
 }
 
 // Pseudo-randomly selects an index from 0 to maxIdx (inclusive), then outputs
