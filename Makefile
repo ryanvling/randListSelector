@@ -1,2 +1,2 @@
-randListSelector: randListSelector.c
-	gcc randListSelector.c -o randListSelector -Wall -Wextra -pedantic -std=c99
+CXX_SOURCES = randListSelector.cpp
+CFLAGS = -std=c++17
